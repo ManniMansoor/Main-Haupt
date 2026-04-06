@@ -1,0 +1,34 @@
+{
+  "dependencyTypes": [
+    "prod",
+    "peer"
+  ],
+  "versionGroups": [
+    {
+      "packages": [
+        "**"
+      ],
+      "dependencies": [
+        "@fluentui/react-components"
+      ],
+      "dependencyTypes": [
+        "peer"
+      ],
+      "isIgnored": true
+    },
+    {
+      "packages": [
+        "@fluentui-contrib/react-interactive-tab",
+        "@fluentui-contrib/react-keytips"
+      ],
+      "dependencies": [
+        "@fluentui/react-jsx-runtime",
+        "@fluentui/react-utilities"
+      ],
+      "dependencyTypes": [
+        "prod"
+      ],
+      "isIgnored": true
+    }
+  ]
+}
