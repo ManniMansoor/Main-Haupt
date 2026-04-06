@@ -1,45 +1,137 @@
-import { splitButtonClassNames } from '@fluentui/react-button';
 import { createCustomFocusIndicatorStyle } from '@fluentui/react-tabster';
+import type { SlotClassNames } from '@fluentui/react-utilities';
 import { tokens } from '../../../tokens';
-import { makeStyles, mergeClasses } from '@griffel/react';
-import { getSlotClassNameProp_unstable } from '@fluentui/react-utilities';
-import {
-  buttonSpacingVerticalLarge,
-  buttonSpacingVerticalMedium,
-  buttonSpacingVerticalSmall,
-} from '../Button/useButtonStyles.styles';
-import type { SplitButtonState } from './SplitButton.types';
+import { makeStyles, mergeClasses, shorthands } from '@griffel/react';
+import type { SplitButtonSlots, SplitButtonState } from './SplitButton.types';
 
-const useStyles = makeStyles({
-  root: {
-    display: 'inline-flex',
-    verticalAlign: 'middle',
-  },
+export const splitButtonClassNames: SlotClassNames<SplitButtonSlots> = {
+  root: 'fui-SplitButton',
+  primaryActionButton: 'fui-SplitButton__primaryActionButton',
+  menuButton: 'fui-SplitButton__menuButton',
+};
+
+const createPaddingWithStrokeAdjustment = (
+  horizontal: string
+): {
+  paddingLeft: string;
+  paddingRight: string;
+} => ({
+  paddingLeft: `calc(${horizontal} - ${tokens.strokeWidthThin})`,
+  paddingRight: horizontal,
+});
+
+const createSizeStyles = (
+  dimension: string
+): {
+  height: string;
+  width: string;
+} => ({
+  height: dimension,
+  width: dimension,
 });
 
 const useFocusStyles = makeStyles({
   primaryActionButton: createCustomFocusIndicatorStyle({
-    borderBottomRightRadius: tokens.borderRadiusNone,
-    borderTopRightRadius: tokens.borderRadiusNone,
-    ':after': { content: 'none' },
+    ...shorthands.borderColor(tokens.colorStrokeFocus1),
+    borderRadius: 0,
+    borderRightWidth: 0,
+    boxShadow: 'none',
+    outline: `${tokens.strokeWidthThick} solid ${tokens.colorStrokeFocus2}`,
+    ':after': {
+      borderRightColor: 'inherit',
+      height: '100%',
+    },
   }),
+
   menuButton: createCustomFocusIndicatorStyle({
-    position: 'relative', // prevent outline clipping
-    borderTopLeftRadius: tokens.borderRadiusNone,
-    borderBottomLeftRadius: tokens.borderRadiusNone,
+    ...shorthands.borderColor(tokens.colorStrokeFocus1),
+    borderRadius: 0,
+    borderLeft: 'none',
+    boxShadow: 'none',
+    outline: `${tokens.strokeWidthThick} solid ${tokens.colorStrokeFocus2}`,
+    position: 'relative',
+    zIndex: 1,
+    ':after': {
+      content: '""',
+      borderLeft: `${tokens.strokeWidthThin} solid ${tokens.colorStrokeFocus1}`,
+    },
   }),
+});
+
+const useRootStyles = makeStyles({
+  small: {
+    [`& .${splitButtonClassNames.primaryActionButton}`]: {
+      borderTopLeftRadius: '8px',
+      borderBottomLeftRadius: '8px',
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    [`& .${splitButtonClassNames.menuButton}`]: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderTopRightRadius: '8px',
+      borderBottomRightRadius: '8px',
+    },
+  },
+  medium: {
+    [`& .${splitButtonClassNames.primaryActionButton}`]: {
+      borderTopLeftRadius: '12px',
+      borderBottomLeftRadius: '12px',
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    [`& .${splitButtonClassNames.menuButton}`]: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderTopRightRadius: '12px',
+      borderBottomRightRadius: '12px',
+    },
+  },
+  large: {
+    [`& .${splitButtonClassNames.primaryActionButton}`]: {
+      borderTopLeftRadius: '12px',
+      borderBottomLeftRadius: '12px',
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    [`& .${splitButtonClassNames.menuButton}`]: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderTopRightRadius: '12px',
+      borderBottomRightRadius: '12px',
+    },
+  },
+});
+
+const useRootAppearanceStyles = makeStyles({
+  tint: {
+    [`&:hover .${splitButtonClassNames.primaryActionButton}`]: {
+      ...shorthands.borderColor(tokens.colorBrandStroke2Hover),
+    },
+    [`&:hover .${splitButtonClassNames.menuButton}`]: {
+      ...shorthands.borderColor(tokens.colorBrandStroke2Hover),
+    },
+  },
+  outlineColor: {},
+  primary: {},
+  outline: {},
+  secondary: {},
+  subtle: {},
+  transparent: {},
 });
 
 const usePrimaryActionButtonStyles = makeStyles({
   base: {
-    borderBottomRightRadius: tokens.borderRadiusNone,
+    borderRadius: tokens.borderRadiusNone,
     borderRightWidth: '0',
-    borderTopRightRadius: tokens.borderRadiusNone,
     position: 'relative',
     ':after': {
       content: '""',
       borderRight: `${tokens.strokeWidthThin} solid`,
       borderRightColor: 'inherit',
+      boxSizing: 'border-box',
+      height: `calc(100% - ${tokens.strokeWidthThin} * 2 - ${tokens.spacingVerticalS} * 2)`,
+      opacity: 0.3,
       position: 'absolute',
       right: 0,
     },
@@ -50,9 +142,7 @@ const usePrimaryActionButtonStyles = makeStyles({
       ':active:after': { borderRightColor: 'inherit' },
     },
   },
-  outline: {
-    // same as base
-  },
+  outline: {},
   primary: {
     ':after': { borderRightColor: tokens.colorNeutralStrokeOnBrand2 },
     ':hover:after': {
@@ -61,13 +151,8 @@ const usePrimaryActionButtonStyles = makeStyles({
     ':active:after': {
       borderRightColor: tokens.colorNeutralStrokeOnBrand2Pressed,
     },
-    '@media (forced-colors: active)': {
-      ':after': { borderRightColor: 'HighlightText' },
-    },
   },
-  secondary: {
-    // same as base
-  },
+  secondary: {},
   subtle: {
     ':after': { borderRightColor: tokens.colorNeutralStroke1 },
     ':hover:after': { borderRightColor: tokens.colorNeutralStroke1Hover },
@@ -83,71 +168,72 @@ const usePrimaryActionButtonStyles = makeStyles({
     },
   },
   tint: {
-    '@media (forced-colors: active)': {
-      ':after': { borderRightColor: 'HighlightText' },
+    ':after': {
+      borderRightColor: tokens.colorBrandStroke2,
+      opacity: 1,
+    },
+    ':hover:after': {
+      borderRightColor: tokens.colorBrandStroke2Hover,
+    },
+    ':active:after': {
+      borderRightColor: tokens.colorBrandStroke2Pressed,
     },
   },
+  outlineColor: {},
   disabled: {
     ':after': { borderRightColor: tokens.colorNeutralStrokeDisabled },
     ':hover:after': { borderRightColor: tokens.colorNeutralStrokeDisabled },
     ':active:after': {
       borderRightColor: tokens.colorNeutralStrokeDisabled,
     },
-    '@media (forced-colors: active)': {
-      ':after': { borderRightColor: 'GrayText' },
-      ':hover:after': { borderRightColor: 'GrayText' },
-      ':active:after': { borderRightColor: 'GrayText' },
-    },
   },
-  small: {
-    ':after': {
-      top: buttonSpacingVerticalSmall,
-      bottom: buttonSpacingVerticalSmall,
-    },
-  },
-  medium: {
-    ':after': {
-      top: buttonSpacingVerticalMedium,
-      bottom: buttonSpacingVerticalMedium,
-    },
-  },
-  large: {
-    ':after': {
-      top: buttonSpacingVerticalLarge,
-      bottom: buttonSpacingVerticalLarge,
-    },
-  },
+  small: createPaddingWithStrokeAdjustment(tokens.spacingHorizontalS),
+  medium: createPaddingWithStrokeAdjustment(tokens.spacingHorizontalM),
+  large: createPaddingWithStrokeAdjustment(tokens.spacingHorizontalM),
 });
 
 const useMenuButtonStyles = makeStyles({
   base: {
-    borderBottomLeftRadius: tokens.borderRadiusNone,
+    borderRadius: tokens.borderRadiusNone,
     borderLeft: 'none',
-    borderTopLeftRadius: tokens.borderRadiusNone,
+    ':after': {
+      borderLeft: `${tokens.strokeWidthThin} solid`,
+      boxSizing: 'border-box',
+      height: '100%',
+      position: 'absolute',
+      width: '100%',
+    },
   },
-  small: { padding: '7px' }, // padding S - 1px border
-  medium: { padding: '9px' }, // padding MNudge - 1px border
-  large: { padding: '11px' }, // padding M - 1px border
+  small: { paddingLeft: tokens.spacingHorizontalSNudge },
+  medium: { paddingLeft: tokens.spacingHorizontalS },
+  large: { paddingLeft: tokens.spacingHorizontalMNudge },
+});
+
+const useMenuIconStyles = makeStyles({
+  small: createSizeStyles('12px'),
+  medium: createSizeStyles('16px'),
+  large: createSizeStyles('16px'),
 });
 
 export const useSplitButtonStyles = (
   state: SplitButtonState
 ): SplitButtonState => {
-  const styles = useStyles();
+  const rootStyles = useRootStyles();
+  const rootAppearanceStyles = useRootAppearanceStyles();
   const focusStyles = useFocusStyles();
   const primaryActionButtonStyles = usePrimaryActionButtonStyles();
   const menuButtonStyles = useMenuButtonStyles();
+  const menuIconStyles = useMenuIconStyles();
 
   state.root.className = mergeClasses(
-    state.root.className,
     splitButtonClassNames.root,
-    styles.root,
-    getSlotClassNameProp_unstable(state.root)
+    rootStyles[state.size],
+    rootAppearanceStyles[state.appearance],
+    state.root.className
   );
 
   if (state.primaryActionButton) {
     state.primaryActionButton.className = mergeClasses(
-      state.primaryActionButton.className,
       splitButtonClassNames.primaryActionButton,
       primaryActionButtonStyles.base,
       primaryActionButtonStyles[state.appearance],
@@ -155,18 +241,24 @@ export const useSplitButtonStyles = (
       focusStyles.primaryActionButton,
       (state.disabled || state.disabledFocusable) &&
         primaryActionButtonStyles.disabled,
-      getSlotClassNameProp_unstable(state.primaryActionButton)
+      state.primaryActionButton.className
     );
   }
 
   if (state.menuButton) {
     state.menuButton.className = mergeClasses(
-      state.menuButton.className,
       splitButtonClassNames.menuButton,
       menuButtonStyles.base,
       menuButtonStyles[state.size],
       focusStyles.menuButton,
-      getSlotClassNameProp_unstable(state.menuButton)
+      state.menuButton.className
+    );
+  }
+
+  if (state.menuIcon) {
+    state.menuIcon.className = mergeClasses(
+      menuIconStyles[state.size],
+      state.menuIcon.className
     );
   }
 

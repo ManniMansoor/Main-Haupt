@@ -15,6 +15,7 @@ export const baseAppearanceMap: Record<
   secondary: 'secondary',
   primary: 'primary',
   outline: 'outline',
+  outlineColor: 'outline',
   subtle: 'subtle',
   transparent: 'transparent',
   tint: 'primary',
