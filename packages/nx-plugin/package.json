@@ -1,0 +1,8 @@
+{
+  "name": "@fluentui-contrib/nx-plugin",
+  "private": true,
+  "version": "0.0.1",
+  "type": "commonjs",
+  "generators": "./generators.json",
+  "executors": "./executors.json"
+}
