@@ -1,0 +1,65 @@
+{
+  "name": "@fluentui-contrib/react-chat",
+  "entries": [
+    {
+      "date": "Thu, 01 Jun 2023 16:04:31 GMT",
+      "tag": "@fluentui-contrib/react-chat_v0.1.3",
+      "version": "0.1.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "lingfangao@hotmail.com",
+            "package": "@fluentui-contrib/react-chat",
+            "commit": "12e79c1329380dda00eef70a2f6e5a5b000bc8e7",
+            "comment": "fix: ChatMyMessage should not be truncated"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 19 May 2023 11:02:29 GMT",
+      "tag": "@fluentui-contrib/react-chat_v0.1.2",
+      "version": "0.1.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "lingfangao@hotmail.com",
+            "package": "@fluentui-contrib/react-chat",
+            "commit": "e9a799b6c1905e0002ded1cee9ee2ceb09c1ea1e",
+            "comment": "fix: Add swc helper as depedency"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 19 May 2023 09:03:54 GMT",
+      "tag": "@fluentui-contrib/react-chat_v0.1.1",
+      "version": "0.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "lingfangao@hotmail.com",
+            "package": "@fluentui-contrib/react-chat",
+            "commit": "e2c3452033910d04656a058396972299dcdc909e",
+            "comment": "fix: Export components props"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 19 May 2023 08:42:14 GMT",
+      "tag": "@fluentui-contrib/react-chat_v0.1.0",
+      "version": "0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "lingfangao@hotmail.com",
+            "package": "@fluentui-contrib/react-chat",
+            "commit": "a42861fa7865a514bf9a9643533c2e7111ded6d2",
+            "comment": "feat: Initial release of react-chat"
+          }
+        ]
+      }
+    }
+  ]
+}
