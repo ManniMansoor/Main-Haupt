@@ -1,0 +1,20 @@
+{
+  "name": "@fluentui-contrib/nx-plugin",
+  "private": true,
+  "version": "0.0.1",
+  "type": "commonjs",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "dependencies": {
+    "@nx/devkit": "^20.2.2",
+    "semver": "^7.5.2",
+    "@nx/storybook": "^20.2.2",
+    "@nx/js": "^20.2.2",
+    "@nx/playwright": "^20.2.2",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@playwright/experimental-ct-react": "^1.49.1",
+    "nx": ">= 20 <= 21"
+  }
+}
