@@ -1,0 +1,50 @@
+{
+  "name": "@fluentui-contrib/pierce-dom",
+  "entries": [
+    {
+      "date": "Tue, 06 Feb 2024 09:15:09 GMT",
+      "tag": "@fluentui-contrib/pierce-dom_v0.1.0",
+      "version": "0.1.0",
+      "comments": {
+        "none": [
+          {
+            "author": "bernardo.sunderhus@gmail.com",
+            "package": "@fluentui-contrib/pierce-dom",
+            "commit": "e1afa1694054d776bc4c3cb79a5f21754711c22c",
+            "comment": "chore: nx migrate to v17.3"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 31 Jan 2024 23:19:33 GMT",
+      "tag": "@fluentui-contrib/pierce-dom_v0.1.0",
+      "version": "0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "marata@microsoft.com",
+            "package": "@fluentui-contrib/pierce-dom",
+            "commit": "7aec75a453a8a6217f16fa1fc1b27ed91b514dd7",
+            "comment": "Bumping pierce-dom."
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 31 Jan 2024 18:58:41 GMT",
+      "tag": "@fluentui-contrib/pierce-dom_v0.0.1",
+      "version": "0.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "marata@microsoft.com",
+            "package": "@fluentui-contrib/pierce-dom",
+            "commit": "288cd6378c2aceff94317d05bfd56280aaca9e2e",
+            "comment": "Removing private flag from the pierce-dom package."
+          }
+        ]
+      }
+    }
+  ]
+}
