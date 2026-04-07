@@ -1,8 +1,10 @@
-export { buttonClassNames } from '@fluentui/react-button';
 export { Button } from './components/Button/Button';
 export { renderButton } from './components/Button/renderButton';
 export { useButton } from './components/Button/useButton';
-export { useButtonStyles } from './components/Button/useButtonStyles.styles';
+export {
+  buttonClassNames,
+  useButtonStyles,
+} from './components/Button/useButtonStyles.styles';
 export type {
   ButtonProps,
   ButtonSlots,

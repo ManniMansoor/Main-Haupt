@@ -1,6 +1,6 @@
-import rootPreview from '../../../.storybook/preview';
-
 import type { Preview } from '@storybook/react';
+
+import rootPreview from '../../../.storybook/preview';
 
 const preview: Preview = {
   ...rootPreview,
