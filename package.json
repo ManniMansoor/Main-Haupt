@@ -77,7 +77,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-playwright": "2.2.2",
     "globals": "15.15.0",
-    "jest": "30.0.5",
+    "jest": "30.3.0",
     "jest-environment-jsdom": "30.0.5",
     "jest-util": "^30.0.2",
     "jsonc-eslint-parser": "2.4.0",
